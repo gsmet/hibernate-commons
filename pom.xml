@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~ Hibernate Commons, common utilities for Hibernate
+ ~
+ ~ TODO License
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.hibernate.commons</groupId>
+    <artifactId>hibernate-commons-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Hibernate Commons Aggregator</name>
+    <description>Hibernate Commons Aggregator POM</description>
+    <url>http://hibernate.org</url>
+
+    <inceptionYear>2016</inceptionYear>
+
+    <modules>
+        <module>asciidoctor-theme</module>
+    </modules>
+
+    <scm>
+        <connection>scm:git:git://github.com/hibernate/hibernate-commons.git</connection>
+        <developerConnection>scm:git:git@github.com:hibernate/hibernate-commons.git</developerConnection>
+        <url>http://github.com/hibernate/hibernate-commons</url>
+      <tag>HEAD</tag>
+    </scm>
+
+    <organization>
+        <name>Hibernate</name>
+        <url>http://www.hibernate.org</url>
+    </organization>
+
+    <licenses>
+        <!-- TODO to be determined -->
+    </licenses>
+
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>http://ci.hibernate.org/</url>
+    </ciManagement>
+
+    <developers>
+        <developer>
+            <id>guillaume.smet</id>
+            <name>Guillaume Smet</name>
+            <email>guillaume@hibernate.org</email>
+            <url>http://in.relation.to/guillaume-smet/</url>
+        </developer>
+    </developers>
+
+    <prerequisites>
+        <maven>3.2.3</maven>
+    </prerequisites>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+        <maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <nonFilteredFileExtensions>ttf</nonFilteredFileExtensions>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>jboss-releases-repository</id>
+            <name>JBoss Releases Repository</name>
+            <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>jboss-snapshots-repository</id>
+            <name>JBoss Snapshots Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>

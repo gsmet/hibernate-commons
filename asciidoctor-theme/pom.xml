@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.hibernate.commons</groupId>
+        <artifactId>hibernate-commons-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>org.hibernate.commons</groupId>
+    <artifactId>hibernate-commons-asciidoctor-theme</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>Hibernate AsciiDoctor theme</name>
+    <description>
+        The AsciiDoctor theme used for the reference documentations of the Hibernate projects.
+    </description>
+    <url>http://hibernate.org</url>
+
+    <properties>
+        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+        <maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-images-to-zip-content</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources/images/</directory>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/zip-content/images</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-css-to-zip-content</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources/css/</directory>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/zip-content/css</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-theme-to-zip-content</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources/theme/</directory>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/zip-content/theme</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-docinfo-to-zip-content</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources/docinfo/</directory>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/zip-content/docinfo</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <nonFilteredFileExtensions>ttf</nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven-assembly-plugin.version}</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>${basedir}/src/main/assembly/zip-content.xml</descriptor>
+                    </descriptors>
+                    <finalName>${artifactId}-${project.version}</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <tarLongFileMode>gnu</tarLongFileMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>jboss-releases-repository</id>
+            <name>JBoss Releases Repository</name>
+            <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>jboss-snapshots-repository</id>
+            <name>JBoss Snapshots Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
